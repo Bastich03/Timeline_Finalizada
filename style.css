@@ -116,54 +116,61 @@ html, body {
     .tl-slidenav-icon { font-size: 1.5em; }
 } 
 
-/* --- FORZAR TAMAÑO UNIFORME DE ICONOS E IMÁGENES (Regla General) --- */
+/* ==========================================================================
+   CONTROL DE TAMAÑO INTELIGENTE (DEFINITIVO)
+   ========================================================================== */
 
-/* 1. Resetear el contenedor de la imagen para permitir centrado */
-.tl-media-content {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 100% !important;
-}
-
-/* 2. Regla agresiva para la imagen/icono en sí */
-.tl-slide .tl-media-item,
+/* 1. REGLA BASE: SOLO afecta a las imágenes (ICONOS)
+   Le decimos al navegador: "Si es una etiqueta IMG, hazla pequeña".
+   NO tocamos el contenedor general, para no afectar a los videos. */
 .tl-media-content-container img {
-    max-height: 200px !important;  /* Altura máxima fija para todos */
-    max-width: 200px !important;   /* Ancho máximo fijo para que los iconos no se estiren */
-    width: auto !important;        /* Mantiene la proporción original */
-    height: auto !important;       /* Mantiene la proporción original */
-    object-fit: contain !important; /* Asegura que se vea completa */
-    box-shadow: none !important;    /* Quita sombras o bordes extraños */
+    max-height: 200px !important;
+    max-width: 200px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
     background: transparent !important;
+    box-shadow: none !important;
     border: none !important;
+    display: block !important;
     margin: 0 auto !important;
 }
 
-/* 3. Asegurar que en móviles los iconos se mantengan pequeños */
+/* 2. EXCEPCIÓN PARA IMÁGENES MARCADAS COMO GRANDES
+   Si la diapositiva tiene "classname": "media-grande", permitimos que la FOTO crezca. */
+.tl-slide.media-grande .tl-media-content-container img {
+    max-height: 550px !important; /* Altura libre para la portada */
+    max-width: 100% !important;
+    width: auto !important;
+}
+
+/* 3. REGLA PARA VIDEOS (YOUTUBE)
+   Como la regla 1 solo ataca a "img", los videos ("iframe") quedan libres.
+   Aquí solo aseguramos que ocupen buen espacio. */
+.tl-media-content-container iframe,
+.tl-media-content-container .tl-media-youtube {
+    max-height: none !important; /* IMPORTANTE: Quita cualquier límite de altura */
+    max-width: none !important;
+    width: 100% !important;      /* Ocupa todo el ancho del cuadro */
+    height: 400px !important;    /* Forzamos una altura buena para ver videos */
+    border: none !important;
+}
+
+/* 4. AJUSTES PARA MÓVIL */
 @media only screen and (max-width: 600px) {
-    .tl-slide .tl-media-item,
+    /* Iconos siguen pequeños */
     .tl-media-content-container img {
         max-height: 150px !important;
         max-width: 150px !important;
     }
-}
+    
+    /* Fotos grandes en móvil se ajustan un poco */
+    .tl-slide.media-grande .tl-media-content-container img {
+        max-height: 250px !important;
+    }
 
-/* --- EXCEPCIÓN PARA IMÁGENES/VIDEOS IMPORTANTES --- */
-
-/* Esta regla solo aplica a las diapositivas que tengan la etiqueta "media-grande" */
-.tl-slide.media-grande .tl-media-item,
-.tl-slide.media-grande .tl-media-content-container img,
-.tl-slide.media-grande iframe { /* Incluye iframe para videos de YouTube */
-    max-height: 500px !important; /* Aquí defines el tamaño GRANDE */
-    max-width: 100% !important;   /* Ocupa todo el ancho disponible si es necesario */
-    width: auto !important;
-}
-
-/* Ajuste para móviles de las imágenes grandes (para que no se salgan de la pantalla) */
-@media only screen and (max-width: 600px) {
-    .tl-slide.media-grande .tl-media-item,
-    .tl-slide.media-grande iframe {
-        max-height: 300px !important; /* En celular serán un poco más pequeñas */
+    /* Videos en móvil se ajustan a la altura de la pantalla */
+    .tl-media-content-container iframe {
+        height: 250px !important;
     }
 }
