@@ -1,0 +1,39 @@
+/* Reset básico para asegurar que ocupe toda la pantalla */
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Puedes cambiar la fuente aquí */
+    background-color: #f4f4f4; /* Color de fondo detrás de la línea de tiempo si hay huecos */
+}
+
+/* Personalización de la tipografía de los títulos */
+.tl-headline {
+    font-weight: 700 !important;
+    color: #2c3e50; /* Color del texto del título (azul oscuro) */
+}
+
+/* Personalización del texto del cuerpo */
+.tl-text-content p {
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* Personalización de los botones de navegación (flechas) */
+.tl-slidenav-icon {
+    color: #fff; /* Color de la flecha */
+}
+
+/* Opcional: Cambiar el color de fondo de la barra de navegación inferior */
+.tl-timemarker-content-container {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 4px;
+}
+
+/* Ajustes para móviles */
+@media only screen and (max-width: 600px) {
+    .tl-headline {
+        font-size: 20px !important;
+    }
+}
