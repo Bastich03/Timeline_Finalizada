@@ -4,9 +4,9 @@ html, body {
     width: 100%;
     padding: 0;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Puedes cambiar la fuente aquí */
-    background-color: #f4f4f4; /* Color de fondo detrás de la línea de tiempo */
-    color: #333; /* Color de texto general */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 /* Estilos para el encabezado de la página */
@@ -31,9 +31,9 @@ html, body {
 
 /* Contenedor principal para centrar el contenido y la timeline */
 .main-content {
-    max-width: 1200px; /* Ancho máximo para el contenido principal */
-    margin: 0 auto; /* Centra el contenido */
-    padding: 0 20px; /* Espaciado a los lados */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Estilos para el texto de introducción */
@@ -59,25 +59,25 @@ html, body {
 
 /* Contenedor para la línea de tiempo con tamaño y centrado */
 #timeline-container {
-    max-width: 100%; /* Asegura que no se desborde en móvil */
-    height: 650px; /* Altura fija para la línea de tiempo */
-    margin: 0 auto 40px auto; /* Centra el contenedor y añade margen inferior */
+    max-width: 100%;
+    height: 650px;
+    margin: 0 auto 40px auto;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Sombra para encuadrarla */
-    overflow: hidden; /* Importante para que los elementos internos no se desborden */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    overflow: hidden;
 }
 
 /* El elemento real donde TimelineJS se incrusta */
 #timeline-embed {
     width: 100%;
-    height: 100%; /* Ocupa el 100% de la altura de su contenedor padre */
+    height: 100%;
 }
 
 /* Personalización de la tipografía de los títulos internos de la timeline */
 .tl-headline {
     font-weight: 700 !important;
-    color: #2c3e50; /* Color del texto del título (azul oscuro) */
+    color: #2c3e50;
 }
 
 /* Personalización del texto del cuerpo interno de la timeline */
@@ -88,59 +88,82 @@ html, body {
 
 /* Personalización de los botones de navegación (flechas) */
 .tl-slidenav-icon {
-    color: #fff; /* Color de la flecha */
-    font-size: 2em; /* Hace las flechas más grandes */
+    color: #fff;
+    font-size: 2em;
 }
 
 /* Opcional: Cambiar el color de fondo de la barra de navegación inferior */
 .tl-timemarker-content-container {
-    background-color: rgba(255, 255, 255, 0.9) !important; /* Más opaco */
+    background-color: rgba(255, 255, 255, 0.9) !important;
     border-radius: 4px;
 }
 
-/* MEDIA QUERIES para adaptación a dispositivos móviles */
+/* --- MEDIA QUERIES (Adaptación a móviles) --- */
+
 @media only screen and (max-width: 768px) {
-    .page-header h1 {
-        font-size: 1.8em; /* Títulos más pequeños en móvil */
-    }
-
-    .page-header .subtitle, .intro-text p {
-        font-size: 1em; /* Texto más pequeño */
-    }
-
-    .intro-text h2 {
-        font-size: 1.5em;
-    }
-
-    #timeline-container {
-        height: 450px; /* Menor altura en pantallas pequeñas */
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+    .page-header h1 { font-size: 1.8em; }
+    .page-header .subtitle, .intro-text p { font-size: 1em; }
+    .intro-text h2 { font-size: 1.5em; }
+    #timeline-container { height: 450px; margin-left: 10px; margin-right: 10px; }
 }
 
 @media only screen and (max-width: 480px) {
-    .page-header h1 {
-        font-size: 1.5em;
-    }
+    .page-header h1 { font-size: 1.5em; }
+    .page-header .subtitle { font-size: 0.9em; }
+    .main-content { padding: 0 10px; }
+    .intro-text { padding: 15px; }
+    #timeline-container { height: 350px; }
+    .tl-slidenav-icon { font-size: 1.5em; }
+} 
 
-    .page-header .subtitle {
-        font-size: 0.9em;
-    }
+/* --- FORZAR TAMAÑO UNIFORME DE ICONOS E IMÁGENES (Regla General) --- */
 
-    .main-content {
-        padding: 0 10px; /* Menos padding en los bordes */
-    }
+/* 1. Resetear el contenedor de la imagen para permitir centrado */
+.tl-media-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+}
 
-    .intro-text {
-        padding: 15px;
-    }
+/* 2. Regla agresiva para la imagen/icono en sí */
+.tl-slide .tl-media-item,
+.tl-media-content-container img {
+    max-height: 200px !important;  /* Altura máxima fija para todos */
+    max-width: 200px !important;   /* Ancho máximo fijo para que los iconos no se estiren */
+    width: auto !important;        /* Mantiene la proporción original */
+    height: auto !important;       /* Mantiene la proporción original */
+    object-fit: contain !important; /* Asegura que se vea completa */
+    box-shadow: none !important;    /* Quita sombras o bordes extraños */
+    background: transparent !important;
+    border: none !important;
+    margin: 0 auto !important;
+}
 
-    #timeline-container {
-        height: 350px; /* Altura aún menor para los teléfonos más pequeños */
+/* 3. Asegurar que en móviles los iconos se mantengan pequeños */
+@media only screen and (max-width: 600px) {
+    .tl-slide .tl-media-item,
+    .tl-media-content-container img {
+        max-height: 150px !important;
+        max-width: 150px !important;
     }
+}
 
-    .tl-slidenav-icon {
-        font-size: 1.5em; /* Flechas más pequeñas */
+/* --- EXCEPCIÓN PARA IMÁGENES/VIDEOS IMPORTANTES --- */
+
+/* Esta regla solo aplica a las diapositivas que tengan la etiqueta "media-grande" */
+.tl-slide.media-grande .tl-media-item,
+.tl-slide.media-grande .tl-media-content-container img,
+.tl-slide.media-grande iframe { /* Incluye iframe para videos de YouTube */
+    max-height: 500px !important; /* Aquí defines el tamaño GRANDE */
+    max-width: 100% !important;   /* Ocupa todo el ancho disponible si es necesario */
+    width: auto !important;
+}
+
+/* Ajuste para móviles de las imágenes grandes (para que no se salgan de la pantalla) */
+@media only screen and (max-width: 600px) {
+    .tl-slide.media-grande .tl-media-item,
+    .tl-slide.media-grande iframe {
+        max-height: 300px !important; /* En celular serán un poco más pequeñas */
     }
 }
