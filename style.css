@@ -5,16 +5,82 @@ html, body {
     padding: 0;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Puedes cambiar la fuente aquí */
-    background-color: #f4f4f4; /* Color de fondo detrás de la línea de tiempo si hay huecos */
+    background-color: #f4f4f4; /* Color de fondo detrás de la línea de tiempo */
+    color: #333; /* Color de texto general */
 }
 
-/* Personalización de la tipografía de los títulos */
+/* Estilos para el encabezado de la página */
+.page-header {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.page-header .subtitle {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Contenedor principal para centrar el contenido y la timeline */
+.main-content {
+    max-width: 1200px; /* Ancho máximo para el contenido principal */
+    margin: 0 auto; /* Centra el contenido */
+    padding: 0 20px; /* Espaciado a los lados */
+}
+
+/* Estilos para el texto de introducción */
+.intro-text {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.intro-text h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.intro-text p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Contenedor para la línea de tiempo con tamaño y centrado */
+#timeline-container {
+    max-width: 100%; /* Asegura que no se desborde en móvil */
+    height: 650px; /* Altura fija para la línea de tiempo */
+    margin: 0 auto 40px auto; /* Centra el contenedor y añade margen inferior */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Sombra para encuadrarla */
+    overflow: hidden; /* Importante para que los elementos internos no se desborden */
+}
+
+/* El elemento real donde TimelineJS se incrusta */
+#timeline-embed {
+    width: 100%;
+    height: 100%; /* Ocupa el 100% de la altura de su contenedor padre */
+}
+
+/* Personalización de la tipografía de los títulos internos de la timeline */
 .tl-headline {
     font-weight: 700 !important;
     color: #2c3e50; /* Color del texto del título (azul oscuro) */
 }
 
-/* Personalización del texto del cuerpo */
+/* Personalización del texto del cuerpo interno de la timeline */
 .tl-text-content p {
     font-size: 1.1em;
     line-height: 1.5;
@@ -23,17 +89,58 @@ html, body {
 /* Personalización de los botones de navegación (flechas) */
 .tl-slidenav-icon {
     color: #fff; /* Color de la flecha */
+    font-size: 2em; /* Hace las flechas más grandes */
 }
 
 /* Opcional: Cambiar el color de fondo de la barra de navegación inferior */
 .tl-timemarker-content-container {
-    background-color: rgba(255, 255, 255, 0.8) !important;
+    background-color: rgba(255, 255, 255, 0.9) !important; /* Más opaco */
     border-radius: 4px;
 }
 
-/* Ajustes para móviles */
-@media only screen and (max-width: 600px) {
-    .tl-headline {
-        font-size: 20px !important;
+/* MEDIA QUERIES para adaptación a dispositivos móviles */
+@media only screen and (max-width: 768px) {
+    .page-header h1 {
+        font-size: 1.8em; /* Títulos más pequeños en móvil */
+    }
+
+    .page-header .subtitle, .intro-text p {
+        font-size: 1em; /* Texto más pequeño */
+    }
+
+    .intro-text h2 {
+        font-size: 1.5em;
+    }
+
+    #timeline-container {
+        height: 450px; /* Menor altura en pantallas pequeñas */
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.5em;
+    }
+
+    .page-header .subtitle {
+        font-size: 0.9em;
+    }
+
+    .main-content {
+        padding: 0 10px; /* Menos padding en los bordes */
+    }
+
+    .intro-text {
+        padding: 15px;
+    }
+
+    #timeline-container {
+        height: 350px; /* Altura aún menor para los teléfonos más pequeños */
+    }
+
+    .tl-slidenav-icon {
+        font-size: 1.5em; /* Flechas más pequeñas */
     }
 }
